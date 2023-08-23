@@ -4,6 +4,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stddef.h>
+#include <string.h>
+#include <unistd.h>
+#include <ctype.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <fcntl.h>
 
 /**
 * struct stack_s - doubly linked list representation of a stack (or queue)
@@ -16,9 +22,9 @@
 */
 typedef struct stack_s
 {
-int n;
-struct stack_s *prev;
-struct stack_s *next;
+	int n;
+	struct stack_s *prev;
+	struct stack_s *next;
 } stack_t;
 
 /**
@@ -31,8 +37,8 @@ struct stack_s *next;
 */
 typedef struct instruction_s
 {
-char *opcode;
-void (*f)(stack_t **stack, unsigned int line_number);
+	char *opcode;
+	void (*f)(stack_t **head, unsigned int line_number);
 } instruction_t;
 
 #define FUNINSTRUCTION {{"push", push}, {NULL, NULL}}
@@ -42,8 +48,11 @@ extern char *token2;
 
 /* Functions */
 
-void opfun(stack_t **stack, char *token, unsigned int lnum);
-void push(stack_t **stack, unsigned int lnum);
+void opfun(stack_t **head, char *token, unsigned int line_num);
+void push(stack_t **head, unsigned int line_num);
+void pall(stack_t **head, unsigned int line_num);
 stack_t *newNode(stack_t **head, int n);
+void _pint(stack_t **head, unsigned int line_num);
+void _pop(stack_t **head, unsigned int line_num);
 
 #endif /* _MONTY_H_ */

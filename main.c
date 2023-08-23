@@ -19,9 +19,9 @@ int main(int argc, char **argv)
 {
 	FILE *fptr;
 	char *token1, *buffer;
-	stack_t *stack = NULL;
+	stack_t *head = NULL;
 	size_t bufflen = 256;
-	unsigned int lnum = 1;
+	unsigned int line_num = 1;
 
 	if (argc != 2)
 	{
@@ -44,18 +44,18 @@ int main(int argc, char **argv)
 	{
 		if (*buffer == '\n')
 		{
-			lnum++;
+			line_num++;
 			continue;
 		}
 		token1 = strtok(buffer, " \t\n");
 		if (token1 == NULL)
 		{
-			lnum++;
+			line_num++;
 			continue;
 		}
 		token2 = strtok(NULL, " \t\n");
-		opfun(&stack, token1, lnum);
-		lnum++;
+		opfun(&head, token1, line_num);
+		line_num++;
 	}
 	free(buffer);
 	fclose(fptr);
