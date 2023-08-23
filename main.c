@@ -42,6 +42,8 @@ int main(int argc, char **argv)
 	}
 	while (fgets(buffer, bufflen, fptr) != NULL)
 	{
+		if (exitstatus)
+			break;
 		if (*buffer == '\n')
 		{
 			line_num++;
