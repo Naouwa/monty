@@ -43,18 +43,7 @@ void push(stack_t **head, unsigned int line_num)
  * @head: the pointer to the head of the stack
  * @line_num: line number of opcode
  */
-void pall(stack_t **head, unsigned int line_num)
+void pall(stack_t **head, __attribute__((unused)) unsigned int line_num)
 {
-	stack_t *h;
-
-	h = *head;
-	if (h == NULL)
-		return;
-
-	while (h)
-	{
-		printf("%d\n", h->n);
-		h = h->next;
-		(void)line_num;
-	}
+	printit(*head);
 }

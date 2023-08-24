@@ -2,11 +2,8 @@
 #include <string.h>
 #include <stdio.h>
 
-/* This is where argument for opcode will be stored */
-char *token2 = NULL;
-
-/* Exit status that will be updated in functions outside of main */
 int exitstatus = 0;
+char *token2 = NULL;
 
 /**
  * main - interpreter program for Monty ByteCodes files
@@ -26,14 +23,14 @@ int main(int argc, char *argv[])
 	if (argc != 2)
 	{
 		fprintf(stderr, "USAGE: monty file\n");
-		return EXIT_FAILURE;
+		exit (EXIT_FAILURE);
 	}
 
 	fptr = fopen(argv[1], "r");
 	if (!fptr)
 	{
 		fprintf(stderr, "Error: Can't open file %s\n", argv[1]);
-		return EXIT_FAILURE;
+		exit (EXIT_FAILURE);
 	}
 
 	buffer = malloc(bufflen);
@@ -66,6 +63,7 @@ int main(int argc, char *argv[])
 	}
 
 	free(buffer);
+	free_stack(head);
 	fclose(fptr);
 	exit(exitstatus);
 }

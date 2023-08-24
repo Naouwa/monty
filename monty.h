@@ -46,6 +46,7 @@ typedef struct instruction_s
 extern int exitstatus;
 extern char *token2;
 
+
 /* Functions */
 
 int execute(char *buffer, stack_t **head, unsigned int line_num, FILE *fptr);
@@ -60,5 +61,5 @@ void _nop(stack_t **head, unsigned int line_num);
 void _swap(stack_t **head, unsigned int line_num);
 void free_stack(stack_t *head);
 char *_realloc(char *ptr, unsigned int prev_size, unsigned int actu_size);
-
+size_t printit(const stack_t *head);
 #endif /* _MONTY_H_ */

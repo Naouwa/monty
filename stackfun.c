@@ -28,3 +28,22 @@ stack_t *newNode(stack_t **head, int n)
 
 	return (new);
 }
+
+/**
+ * printit - prints elements of a stack
+ * @head: head of stack
+ *
+ * Return: nu;ber of elements printed
+ */
+size_t printit(const stack_t *head)
+{
+	size_t i = 0;
+
+	while (head)
+	{
+		printf("%d\n", head->n);
+		head = head->next;
+		i++;
+	}
+	return (i);
+}
