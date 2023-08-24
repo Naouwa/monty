@@ -18,11 +18,12 @@ void _swap(stack_t **head, unsigned int line_num)
 	(*head)->next = tmp->next;
 
 	if (tmp->next != NULL)
+		tmp->next->prev = *head;
 
-	tmp->next->prev = *head;
 	tmp->prev = NULL;
 	tmp->next = *head;
 	(*head)->prev = tmp;
+	*head = tmp;
 }
 
 /**

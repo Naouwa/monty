@@ -1,5 +1,4 @@
 #include "monty.h"
-#include <string.h>
 /**
  * opfun - runs the builtin like push, pall etc.
  * @head: the stack subject to the opcode
@@ -21,6 +20,9 @@ void opfun(stack_t **head, char *token, unsigned int line_num)
 		}
 		i++;
 	}
-	fprintf(stderr, "L%d: unknown instruction %s\n", line_num, token);
-	exit(EXIT_FAILURE);
+
+	{
+		fprintf(stderr, "L%d: unknown instruction %s\n", line_num, token);
+		exit(EXIT_FAILURE);
+	}
 }

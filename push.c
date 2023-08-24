@@ -9,14 +9,32 @@ void push(stack_t **head, unsigned int line_num)
 {
 	char *data = token2;
 
-	if (isdigit(data) == 0)
+	int num;
+	if (!isdigit(data[0]) && data[0] != '-' && data[0] != '+')
 	{
-		fprintf(stderr, "L%d: usage: push integer", line_num);
+		fprintf(stderr, "L%d: usage: push integer\n", line_num);
 		exitstatus = EXIT_FAILURE;
+		return;
 	}
-	if (newNode(head, atoi(data)) == NULL)
+
+	num = atoi(data);
 	{
-		exitstatus = EXIT_FAILURE;
+		stack_t *newNode = malloc(sizeof(stack_t));
+		if (newNode == NULL)
+		{
+			fprintf(stderr, "Error: malloc failed\n");
+			exitstatus = EXIT_FAILURE;
+			return;
+		}
+
+		newNode->n = num;
+		newNode->next = *head;
+		newNode->prev = NULL;
+
+		if (*head != NULL)
+			(*head)->prev = newNode;
+
+		*head = newNode;
 	}
 }
 
@@ -32,6 +50,7 @@ void pall(stack_t **head, unsigned int line_num)
 	h = *head;
 	if (h == NULL)
 		return;
+
 	while (h)
 	{
 		printf("%d\n", h->n);
