@@ -41,7 +41,16 @@ typedef struct instruction_s
 	void (*f)(stack_t **head, unsigned int line_num);
 } instruction_t;
 
-#define FUNINSTRUCTION {{"push", push}, {"pall", pall}, {"pint", _pint}, {"pop", _pop}, {"swap", _swap}, {"add", _add}, {"nop", _nop}, {NULL, NULL}}
+#define FUNINSTRUCTION { \
+	{"push", push}, \
+	{"pall", pall}, \
+	{"pint", _pint}, \
+	{"pop", _pop}, \
+	{"swap", _swap}, \
+	{"add", _add}, \
+	{"nop", _nop}, \
+	{NULL, NULL} \
+}
 
 extern int exitstatus;
 extern char *token2;
@@ -54,6 +63,10 @@ void opfun(stack_t **head, char *token, unsigned int line_num);
 void push(stack_t **head, unsigned int line_num);
 void pall(stack_t **head, unsigned int line_num);
 void _add(stack_t **head, unsigned int line_num);
+void _sub(stack_t **head, unsigned int line_num);
+void _div(stack_t **head, unsigned int line_num);
+void _mul(stack_t **head, unsigned int line_num);
+void _mod(stack_t **head, unsigned int line_num);
 stack_t *newNode(stack_t **head, int n);
 void _pint(stack_t **head, unsigned int line_num);
 void _pop(stack_t **head, unsigned int line_num);

@@ -10,6 +10,7 @@ void push(stack_t **head, unsigned int line_num)
 	char *data = token2;
 
 	int num;
+
 	if (!isdigit(data[0]) && data[0] != '-' && data[0] != '+')
 	{
 		fprintf(stderr, "L%d: usage: push integer\n", line_num);
@@ -20,6 +21,7 @@ void push(stack_t **head, unsigned int line_num)
 	num = atoi(data);
 	{
 		stack_t *newNode = malloc(sizeof(stack_t));
+
 		if (newNode == NULL)
 		{
 			fprintf(stderr, "Error: malloc failed\n");
