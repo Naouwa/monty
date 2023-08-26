@@ -75,4 +75,9 @@ void _swap(stack_t **head, unsigned int line_num);
 void free_stack(stack_t *head);
 char *_realloc(char *ptr, unsigned int prev_size, unsigned int actu_size);
 size_t printit(const stack_t *head);
+int _isdigit(char *str);
+void usgerror(void);
+void _ferror(char *filename);
+void merror(void);
+
 #endif /* _MONTY_H_ */

@@ -2,6 +2,37 @@
 #include <string.h>
 #include <stdio.h>
 
+/*
+ * usgerror - prints usage error message and exits
+ *
+ */
+void usgerror(void)
+{
+	fprintf(stderr, "USAGE: monty file\n");
+	exit(EXIT_FAILURE);
+}
+
+/*
+ * _ferror - prints file error message and exits
+ *
+ * @filename: name of the file that could not be opened
+ */
+void _ferror(char *filename)
+{
+	fprintf(stderr, "Error: Can't open file %s\n", filename);
+	exit(EXIT_FAILURE);
+}
+
+/*
+ * merror - prints malloc error message and exits
+ *
+ */
+void merror(void)
+{
+	fprintf(stderr, "Error: malloc failed\n");
+	exit(EXIT_FAILURE);
+}
+
 int exitstatus = 0;
 char *token2 = NULL;
 
@@ -15,42 +46,28 @@ char *token2 = NULL;
 int main(int argc, char *argv[])
 {
 	FILE *fptr;
-        char *token1, *buffer;
-        stack_t *head = NULL;
-        size_t bufflen = 256;
-        unsigned int line_num = 1;
+	char *token1, *buffer;
+	stack_t *head = NULL;
+	size_t bufflen = 256;
+	unsigned int line_num = 1;
 
 	if (argc != 2)
-	{
-		fprintf(stderr, "USAGE: monty file\n");
-		exit (EXIT_FAILURE);
-	}
-
+		usgerror();
 	fptr = fopen(argv[1], "r");
 	if (!fptr)
-	{
-		fprintf(stderr, "Error: Can't open file %s\n", argv[1]);
-		exit (EXIT_FAILURE);
-	}
-
+		_ferror(argv[1]);
 	buffer = malloc(bufflen);
 	if (buffer == NULL)
-	{
-		fprintf(stderr, "Error: malloc failed\n");
-		exit(EXIT_FAILURE);
-	}
-
+		merror();
 	while (fgets(buffer, bufflen, fptr) != NULL)
 	{
 		if (exitstatus)
 			break;
-
 		if (*buffer == '\n')
 		{
 			line_num++;
 			continue;
 		}
-
 		token1 = strtok(buffer, " \t\n");
 		if (token1 == NULL)
 		{
@@ -61,7 +78,6 @@ int main(int argc, char *argv[])
 		opfun(&head, token1, line_num);
 		line_num++;
 	}
-
 	free(buffer);
 	free_stack(head);
 	fclose(fptr);

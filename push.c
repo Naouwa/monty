@@ -8,10 +8,9 @@
 void push(stack_t **head, unsigned int line_num)
 {
 	char *data = token2;
-
 	int num;
 
-	if (!isdigit(data[0]) && data[0] != '-' && data[0] != '+')
+	if (_isdigit(data) == 0)
 	{
 		fprintf(stderr, "L%d: usage: push integer\n", line_num);
 		exitstatus = EXIT_FAILURE;
