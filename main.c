@@ -2,7 +2,7 @@
 #include <string.h>
 #include <stdio.h>
 
-/*
+/**
  * usgerror - prints usage error message and exits
  *
  */
@@ -12,7 +12,7 @@ void usgerror(void)
 	exit(EXIT_FAILURE);
 }
 
-/*
+/**
  * _ferror - prints file error message and exits
  *
  * @filename: name of the file that could not be opened
@@ -23,7 +23,7 @@ void _ferror(char *filename)
 	exit(EXIT_FAILURE);
 }
 
-/*
+/**
  * merror - prints malloc error message and exits
  *
  */
