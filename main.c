@@ -63,7 +63,7 @@ int main(int argc, char *argv[])
 	{
 		if (exitstatus)
 			break;
-		if (*buffer == '\n')
+		if (*buffer == '\n' || *buffer == '#')
 		{
 			line_num++;
 			continue;
